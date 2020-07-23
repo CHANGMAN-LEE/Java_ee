@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+</head>
+<body>
+	<h1 align="center">글쓰기</h1>
+	<form name="guestbookWriteForm" method="post"
+		action="/guestbookServlet/GuestbookWriteServlet?pg=1">
+		<table align="center" border="1" cellspacing="0" cellpadding="10"
+			bordercolor="black" bgcolor="skyblue">
+			<tr>
+				<td width="70" align="center">작성자</td>
+				<td><input type="text" name="name" placeholder="작성자 입력"></td>
+			</tr>
+
+			<tr>
+				<td align="center">이메일</td>
+				<td><input type="text" name="email" style="width: 200px;"
+					placeholder="이메일 입력"></td>
+			</tr>
+
+			<tr>
+				<td align="center">홈페이지</td>
+				<td><input type="text" style="width: 300px;" name="page"
+					value="http://"></td>
+			</tr>
+
+			<tr>
+				<td align="center"><font color="red">*</font>제목</td>
+				<td><input type="text" name="title" style="width: 350px;"
+					placeholder="제목 입력"></td>
+			</tr>
+
+			<tr>
+				<td align="center"><font color="red">*</font>내용</td>
+				<td><textarea name="content" rows="8" cols="50"
+						placeholder="내용을 입력하세요"></textarea></td>
+			</tr>
+
+			<tr>
+				<td colspan="3" align="center"><input type="button" value="글작성"
+					onclick="checkbookWriteForm()"> &emsp; <input type="reset"
+					value="다시작성"> &emsp; <input type="button" value="글목록"
+					onclick="javascript:location.href='http://localhost:8080/guestbookServlet/GuestbookListServlet?pg=1'"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+<script type="text/javascript" src="../js/guestbook.js"></script>
+</html>

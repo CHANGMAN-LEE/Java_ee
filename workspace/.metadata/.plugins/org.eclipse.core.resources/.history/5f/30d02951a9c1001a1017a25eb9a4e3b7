@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body marginheight="0" marginwidth="0">
+<table style="width: 100%; height: 100%" border="1">
+	<tr height="100" colspan="2" align="center" style="background-color:#FFFFEBCD">
+		<td align="center">
+			<h1>T E S T</h1>
+			<a href="../test/index.html"><font size="4"><strong>HOME</strong></font></a>&nbsp;
+			<a href="../test/loginForm.jsp"><font size="4"><strong>로그인</strong></font></a>&nbsp;
+			<a href="../test/writeForm.jsp"><font size="4"><strong>회원가입</strong></font></a>&nbsp;
+		</td>
+	</tr>
+	<tr width="300" height="800" valign="top" align="center" style="background-color:#FFFFEBCD">
+		<td height="400" align="center">
+			<img width="916" height="515" src="../image/bitcamp.png">
+		</td>
+	</tr>
+</table>
+</body>
+</html>

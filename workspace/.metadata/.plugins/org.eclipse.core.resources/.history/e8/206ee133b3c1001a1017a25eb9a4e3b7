@@ -1,0 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+<h1 align="center">회원가입</h1>
+<form name="writeForm" method="post" action="/miniProject/member/write.do">
+	<table align="center" border="1" cellspacing="0" cellpadding="10"
+		bordercolor="black" bgcolor="">
+		<tr>
+			<td width="70" align="center">이름</td>
+			<td>
+				<input type="text" name="name" class="name" placeholder="이름 입력">
+				<div class="nameDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">아이디</td>
+			<td>
+				<input type="text" name="id" class="id" placeholder="아이디 입력">
+				<input type="button" value="중복체크" id="checkId">
+				<input type="hidden" name="check" value="" id="check">
+				<div class="idDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">비밀번호</td>
+			<td>
+				<input type="password" name="pwd" class="pwd">
+				<div class="pwdDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">재확인</td>
+			<td>
+				<input type="password" name="repwd" class="repwd">
+				<div class="repwdDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">이메일</td>
+			<td><input type="text" size="10" name="email1">@<input
+				size="15" name="email2" list="defaultEmails"
+				placeholder="ex) gmail.com"> <datalist id="defaultEmails">
+					<option value="naver.com">
+					<option value="gmail.com">
+					<option value="daum.net">
+				</datalist></td>
+		</tr>
+
+		<tr>
+			<td colspan="2" align="center">
+				<input type="button"value="회원가입" id="checkWriteForm">
+			</td>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('div[class=nameDiv]').empty();
+	$('div[class=idDiv]').empty();
+	$('div[class=pwdDiv]').empty();
+	$('div[class=repwdDiv]').empty();
+	
+	$('#checkId').click(function(){
+		
+	});
+	
+	$('#checkWriteForm').click(function(){
+		if($('input[class=name]').val() == ''){
+			$('div[class=nameDiv]').text('이름 입력하세요.');
+			$('div[class=nameDiv]').css('color', 'red');
+			$('div[class=nameDiv]').css('font-size', '8pt');
+			$('div[class=nameDiv]').css('font-weight', 'bold');
+			$('input[class=name]').focus();
+		}
+	});
+});
+</script>

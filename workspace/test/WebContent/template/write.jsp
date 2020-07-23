@@ -1,0 +1,123 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+<h1 align="center">회원가입</h1>
+<form name="writeForm" method="post" action="/miniProject/member/write.do">
+	<table align="center" border="1" cellspacing="0" cellpadding="10"
+		bordercolor="black" bgcolor="">
+		<tr>
+			<td width="70" align="center">이름</td>
+			<td>
+				<input type="text" name="name" id="name" placeholder="이름 입력">
+				<div id="nameDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">아이디</td>
+			<td>
+				<input type="text" name="id" id="id" placeholder="아이디 입력">
+				<input type="hidden" name="check" value="" id="check">
+				<div id="idDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">비밀번호</td>
+			<td>
+				<input type="password" name="pwd" id="pwd">
+				<div id="pwdDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">재확인</td>
+			<td>
+				<input type="password" name="repwd" id="repwd">
+				<div id="repwdDiv"></div>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">이메일</td>
+			<td><input type="text" size="10" name="email1">@<input
+				size="15" name="email2" list="defaultEmails"
+				placeholder="ex) gmail.com"> <datalist id="defaultEmails">
+					<option value="naver.com">
+					<option value="gmail.com">
+					<option value="daum.net">
+				</datalist></td>
+		</tr>
+
+		<tr>
+			<td colspan="2" align="center">
+				<input type="button"value="회원가입" id="checkWriteForm">
+			</td>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$('#id').focusout(function() {
+		let id = $('#id').val();
+		if (id == "") {
+			$('#idDiv').text('먼저 아이디를 입력하세요.');
+			$('#idDiv').css('color', 'magenta');
+			$('#idDiv').css('font-size', '8pt');
+			$('#idDiv').css('font-weight', 'bold');
+			$('#id').focus();
+		} else if (id == "test") {
+			$('#idDiv').text('이미 존재하는 아이디입니다.');
+			$('#idDiv').css('color', 'red');
+			$('#idDiv').css('font-size', '8pt');
+			$('#idDiv').css('font-weight', 'bold');
+			$('#id').focus();
+		} else if (id != "test") {
+			$('#idDiv').text('사용가능한 아이디입니다.');
+			$('#idDiv').css('color', 'blue');
+			$('#idDiv').css('font-size', '8pt');
+			$('#idDiv').css('font-weight', 'bold');
+		}
+
+	});
+	
+	$('#checkWriteForm').click(function(){
+		$('#nameDiv').empty();
+		$('#idDiv').empty();
+		$('#pwdDiv').empty();
+		$('#repwdDiv').empty();
+		
+		if ($('#name').val() == '') {
+			$('#nameDiv').text('이름을 입력하세요.');
+			$('#nameDiv').css('color', 'red');
+			$('#nameDiv').css('font-size', '8pt');
+			$('#nameDiv').css('font-weight', 'bold');
+			$('#nameDiv').focus();
+		} else if ($('#id').val() == '') {
+			$('#idDiv').text('아이디를 입력하세요.');
+			$('#idDiv').css('color', 'red');
+			$('#idDiv').css('font-size', '8pt');
+			$('#idDiv').css('font-weight', 'bold');
+			$('#idDiv').focus();
+		} else if ($('#pwd').val() == '') {
+			$('#pwdDiv').text('비밀번호를 입력하세요.');
+			$('#pwdDiv').css('color', 'red');
+			$('#pwdDiv').css('font-size', '8pt');
+			$('#pwdDiv').css('font-weight', 'bold');
+			$('#pwdDiv').focus();
+		} else if ($('#pwd').val() != $('#repwd').val()) {
+			$('#repwdDiv').text('입력하신 비밀번호가 일치하지 않습니다.');
+			$('#repwdDiv').css('color', 'red');
+			$('#repwdDiv').css('font-size', '8pt');
+			$('#repwdDiv').css('font-weight', 'bold');
+			$('#repwdDiv').focus();
+		} else if ($('#name').val() != ""
+				&& $('#id').val() != ""
+				&& $('#pwd').val() == $('#repwd').val()) {
+			alert("가입성공!!");
+			location.href="../test/indexMain.jsp";
+		}
+	});
+});
+</script>

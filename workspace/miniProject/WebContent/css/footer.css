@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.footer{
+	padding:10px;
+	display:flex;
+	background:#FFFFEBCD;
+	color:gray;
+	font-weight: bold;
+}
+.logoFooter,.follow,.news{
+	margin:30px;
+	width:30%;
+}
+#follow{
+	padding:10px;
+	width:50px;
+	height:50px;
+	cursor:pointer;
+}
+.copyright{
+	padding:30px;
+	font-size:10px;
+	background:#dbd993;
+	color:gray;
+	text-align:center;
+}

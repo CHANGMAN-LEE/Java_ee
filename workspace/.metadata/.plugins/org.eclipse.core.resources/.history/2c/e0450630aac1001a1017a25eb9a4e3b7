@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body marginheight="0" marginwidth="0">
+<table style="width: 100%; height: 100%" border="1">
+	<tr height="150" colspan="2" align="center">
+		<td align="center">
+			<h1>T E S T</h1>
+			<a href="../test/index.html"><font size="4"><strong>HOME</strong></font></a>&nbsp;
+			<a href="../test/loginForm.html"><font size="4"><strong>로그인</strong></font></a>&nbsp;
+			<a href="../test/writeForm.html"><font size="4"><strong>회원가입</strong></font></a>&nbsp;
+		</td>
+	</tr>
+	<tr width="300" height="800" valign="top" align="center">
+			<td width="70" align="center">아이디</td>
+			<td>
+				<input type="text" name="id" class="id">
+				<div class="idDiv"></div>
+			</td>
+	</tr>
+	<tr>
+	</tr>
+</table>
+</body>
+</html>

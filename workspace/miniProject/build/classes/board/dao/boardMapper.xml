@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardSQL">
+	<insert id="boardWrite" parameterType="java.util.Map">
+		insert into board(seq, id, name, email, subject, content, ref) values(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.currval)
+	</insert>
+	
+	<select id="readBoardList" parameterType="java.util.Map" resultType="board">
+		select * from (select rownum rn, tt.* from(select * from board order by ref desc, step asc)tt) where <![CDATA[rn>=#{startNum}]]> and <![CDATA[rn<=#{endNum}]]>
+	</select>
+	
+	<select id="getTotalA" resultType="Integer">
+		select count(*) from board
+	</select>
+	
+	<select id="getBoard" parameterType="Integer" resultType="board">
+		select * from board where seq=#{seq}
+	</select>
+	
+	<update id="countHit" parameterType="Integer">
+		update board set hit = hit + 1 where seq=#{seq}
+	</update>
+	
+	<select id="getBoardList" parameterType="java.util.Map" resultType="board">
+		<if test="searchOption==1">
+			select * from (select rownum rn, tt.* from (select * from board where subject like '%'||#{keyword}||'%' order by ref desc, step asc)tt) where <![CDATA[rn>=#{startNum}]]> and <![CDATA[rn<=#{endNum}]]>
+		</if>
+		<if test="searchOption==2">
+			select * from (select rownum rn, tt.* from (select * from board where id like '%'||#{keyword}||'%' order by ref desc, step asc)tt) where <![CDATA[rn>=#{startNum}]]> and <![CDATA[rn<=#{endNum}]]>
+		</if>
+	</select>
+	
+	<select id="getTotalA2" parameterType="java.util.Map" resultType="Integer">
+		<if test="searchOption==1">
+			select count(*) as count from board where subject like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchOption==2">
+			select count(*) as count from board where id like '%'||#{keyword}||'%'
+		</if>
+	</select>
+	
+	<update id="boardModify" parameterType="java.util.Map">
+		update board set subject=#{subject}, content=#{content}, logtime=sysdate where seq=#{seq}
+	</update>
+	
+	<update id="boardReply1" parameterType="board">
+		update board set step=step+1 where ref=#{ref} and step>#{step}
+	</update>
+	
+	<insert id="boardReply2" parameterType="java.util.Map">
+		insert into board values(seq_board.nextval, #{id}, #{name}, #{email}, #{subject}, #{content}, #{ref}, #{lev}, #{step}, #{pseq}, 0, 0, sysdate)
+	</insert>
+	
+	<update id="boardReply3" parameterType="Integer">
+		update board set reply=reply+1 where seq=#{seq}
+		<!-- update board set reply=reply+1 where seq=#{pseq} -->
+	</update>
+	
+	<delete id="boardDelete" parameterType="Integer">
+		begin
+			update board set reply=reply-1 where seq=(select pseq from board where seq=#{seq});
+			update board set subject='[원글이 삭제된 답글] '||subject where pseq=#{seq};
+			delete board where seq=#{seq};
+		end;
+	</delete>
+</mapper>

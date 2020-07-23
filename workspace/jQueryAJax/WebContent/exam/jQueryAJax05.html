@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button id="testButton">클릭하시오</button>
+<br><br>
+<div id="display">
+<table border="1" id="table">
+<thead>
+<tr>
+	<th>이름</th>
+	<th>주소</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#table').hide();
+	
+	$('#testButton').click(function(){
+		$('#table').show();
+		
+		$.getJSON('jQueryAJax05_jsonData.txt', function(data){
+			//alert(data);
+			//alert(JSON.stringify(data));
+			
+			/*
+			$.each(data, function(index, value){
+				//alert(index+", "+value);
+				//alert(index+", "+value.name+" : "+value.addr)
+				
+				$.each(value, function(key, val){
+					alert(key+ " : "+val);
+				});
+			});
+			*/
+			////////////////////////////////////////
+			/*
+			$('#display tbody').empty();
+			
+			$.each(data, function(index, value){
+				$('#display tbody').append('<tr><td>'+value.name+'</td><td>'+value.addr+'</td></tr>');
+			});
+			*/
+			////////////////////////////////////////
+			
+			$('#table tr:gt(0)').remove();
+			
+			for(index in data){
+				$('#display tbody')
+				.append('<tr><td>'+data[index].name
+						+'</td><td>'+data[index].addr+'</td></tr>');
+			}
+			
+		});
+	});
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

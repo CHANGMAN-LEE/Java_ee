@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p id = "p1" atyle="border:1px solid red;"><strong>AJax</strong>프로그래밍,<br>기초</p>
+<input type="button" value="보기" onclick="view()"/>
+</body>
+<script>
+function view(){
+   let p1=document.getElementById("p1");  //아이디가 p1인 객체의 값을 가져옴
+   //출력결과 확인
+   //alert(p1);  //[object HTMLParagraphElement]
+   //alert(p1.tagName);  //P
+   //alert(p1.innerText);  //AJax 프로그래밍, 기초
+   alert(p1.innerHTML);  //<strong>AJax</strong>프로그래밍,<br>기초
+}
+</script>
+</html>
